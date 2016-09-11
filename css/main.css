@@ -1,0 +1,37 @@
+.navbar {
+    text-align: center;       
+}
+
+.navbar-text {
+    float: none;
+}
+
+.panels {    
+    margin-top:50px; 
+}
+
+.sidePanel {
+    background-color: #f8f8f8;
+    border: 1px solid  #e7e7e7;    
+}
+
+.sidePanel .list-group {
+    margin-top : 20px;
+}
+
+.mainPanel {
+    border: 1px solid  #e7e7e7;
+    height: 90%;
+    min-height: 400px;
+}
+
+.emailContent{
+    margin : 10px;
+    margin-top: 20px;
+    height: 100%;
+}
+.searchDiv {
+    background-color: #4d4d4d;
+    height: 100px;
+    width: 100%;    
+}
