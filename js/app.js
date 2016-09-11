@@ -1,36 +1,88 @@
-var mailApp = angular.module("mailApp",[]);
+var mailApp = angular.module("mailApp",['ngRoute']);
 
-var emails = [
-    {
-        id: '1',
-        subject: 'Github',
-        from: 'Robert',
-        body : ' hfeifhif hgoiefw gewoigenwofg',
-        date: '09/11/2016'
-    },
-    {
-        id: '2',
-        subject: 'Google',
-        from: 'Lisa',
-        body : ' bvbxkv iuhwruw fhohriofwifjo',
-        date: '08/10/2016'
-    },
-    {
-        id: '3',
-        subject: 'Facebook',
-        from: 'John',
-        body : ' qiwpqiq oiroirporwr ',
-        date: '07/11/2016'
-    },
-    {
-        id: '4',
-        subject: 'Twitter',
-        from: 'Sarah',
-        body : ' jhkhjk rthrth dgwt',
-        date: '06/11/2016'
-    }
-]
-mailApp.controller("mailController",[function(){
-    this.emails = emails;
+mailApp.factory('mailFactory', function mailFactory($q, $http, $location){
+    var exports = {};
+
+    exports.mails = [];
+    
+
+   /* (function fetchMails() {
+        $http.get('../email.json')
+        .success(function (data) {
+            console.log('Success : ' + JSON.stringify(data));
+            exports.mails = data;            
+        })
+        .error(function (data) {
+            console.log('Failed'); 
+        });
+    })();*/
+
+    
+
+    exports.goToMail = function(index){
+       return this.mails[index];
+    };
+
+    exports.deleteMail = function(index){
+        console.log("index :" + index);
+        this.mails.splice(index,1);
+    };
+
+    exports.fetchMails = function(){        
+        return $http({'method' : 'GET', 'url' : '../email.json'})
+            .error(function(data){
+                    console.log('Error Occurred: '+ data);
+            });
+    };
+        
+   
+
+    
+
+    return exports;
+});
+
+mailApp.config(function($routeProvider){
+    $routeProvider
+        .when('/inbox', {
+            controller : 'inboxController',            
+            templateUrl : '../views/inbox.html'
+        })
+        .when('/inbox/email/:mailId', {
+            controller : 'emailController',            
+            templateUrl : '../views/email.html'
+        })
+        .otherwise({
+         redirectTo: '/inbox'
+      });
+});
+
+mailApp.controller("inboxController",['mailFactory', '$timeout', function($mailFactory, $timeout){
+    var self = this;    
+    $mailFactory.fetchMails().success(function(data){
+        // Just for Demonstration. Ideally fresh data will be taken each time
+        if(!$mailFactory.mails.length)
+        {
+            self.emails = data;
+            $mailFactory.mails = data;
+        }
+        else
+        {
+            self.emails = $mailFactory.mails;
+        }
+    });
+    
+    
+    
+      
+    
+    this.deleteMail = function(index){
+        $mailFactory.deleteMail(index);
+    };
+    
+}]);
+
+mailApp.controller("emailController",['mailFactory','$routeParams', function($mailFactory, $routeParams){    
+    this.mail = $mailFactory.goToMail($routeParams.mailId);    
 
 }]);

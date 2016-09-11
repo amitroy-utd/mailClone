@@ -6,6 +6,7 @@
         
         <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="./js/angular-route.min.js"></script>
         <script src="./js/style.js"></script>
         <script src="./js/app.js"></script>
         
@@ -20,25 +21,17 @@
             <div class="row">
                 <div class="col-sm-3 sidePanel">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">Inbox</a>
-                        <a href="#" class="list-group-item">Trash</a>                
+                        <span class="list-group-item active">Inbox</span>
+                                       
                     </div>
                 </div>
-                <div class="col-sm-9 mainPanel" ng-controller="mailController as mailCtrl">
-                    <div class="emailContent">
-                        <div class="searchDiv">
-                            <div class="emailcount"> You have {{ mailCtrl.emails.length }} messages</div>
-                            <input type="text"  style="width:200px" ng-model="searchtxt" />                             
-                        <div class="emails list-group">
-                            <div class="emailRow" ng-repeat="mail in mailCtrl.emails">
-                                <h5> From: {{ mail.from }} </h5>
-                                <p style="font-size:11px"> Date: {{ mail.date }} </p>
-                                <h4> Subject: {{ mail.subject }}   <button type="button" class="btn btn-danger btn-xs">Delete</button> <button type="button" class="btn btn-primary btn-xs">Read</button> </h4>
-                            </div>
-                            
-                        </div>
+                <div class="col-sm-9 mainPanel">
+                    <div class="emailContent" ng-view>
+
+                       
                     </div>
                 </div>
+            </div>
         </div>
         
         

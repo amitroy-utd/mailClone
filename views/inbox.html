@@ -1,0 +1,18 @@
+ <div ng-controller="inboxController as inboxCtrl">
+    <div class="searchDiv">
+        <div class="emailcount"> You have {{ inboxCtrl.emails.length }} messages</div>
+        <input type="text"  style="width:200px" ng-model="inboxCtrl.searchtxt" /> 
+    </div>                            
+    <div class="emails list-group">
+        <div class="emailRow" ng-repeat="mail in inboxCtrl.emails | filter: inboxCtrl.searchtxt">
+            <h5> From: {{ mail.from }} </h5>
+            <p style="font-size:11px"> Date: {{ mail.date }} </p>
+            <h4> Subject: {{ mail.subject }}   
+                <button ng-click="inboxCtrl.deleteMail($index)" class="btn btn-danger btn-xs">Delete</button> 
+                <a href="#/inbox/email/{{$index}}" class="btn btn-primary btn-xs">Read</a>
+                <!-- <a href="#" ng-click="inboxCtrl.getMail($index)" type="button" class="btn btn-primary btn-xs">Read</a> -->
+            </h4>
+        </div>
+        
+    </div>
+</div>

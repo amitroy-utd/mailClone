@@ -42,7 +42,7 @@
 }
 
 .emails {
-    margin-top : 50px;
+    margin-top : 30px;
 }
 
 .emails .emailRow:nth-child(even){
@@ -67,7 +67,7 @@
     margin-left: 10px;
 }
 
-button {
+.emailRow a,button {
     float: right;
     margin-right: 10px;
 }

@@ -1,0 +1,10 @@
+<div ng-controller="emailController as emailCtrl">
+    <hr>
+    <p> {{ emailCtrl.mail.id }}</p>
+    <p> {{ emailCtrl.mail.from }}</p>
+    <p> {{ emailCtrl.mail.date }} </p>
+    <p> {{ emailCtrl.mail.subject }} </p>
+    <a href="#/inbox/" class="btn btn-primary btn-xs">Back</a> <a href="#"  class="btn btn-primary btn-xs">Reply</a>
+    <hr>
+    <p> {{ emailCtrl.mail.body }} </p>
+</div>
