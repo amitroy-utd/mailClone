@@ -24,11 +24,18 @@
                         <a href="#" class="list-group-item">Trash</a>                
                     </div>
                 </div>
-                <div class="col-sm-9 mainPanel">
+                <div class="col-sm-9 mainPanel" ng-controller="mailController as mailCtrl">
                     <div class="emailContent">
                         <div class="searchDiv">
-                        </div>
-                        <div class="emails">
+                            <div class="emailcount"> You have {{ mailCtrl.emails.length }} messages</div>
+                            <input type="text"  style="width:200px" ng-model="searchtxt" />                             
+                        <div class="emails list-group">
+                            <div class="emailRow" ng-repeat="mail in mailCtrl.emails">
+                                <h5> From: {{ mail.from }} </h5>
+                                <p style="font-size:11px"> Date: {{ mail.date }} </p>
+                                <h4> Subject: {{ mail.subject }}   <button type="button" class="btn btn-danger btn-xs">Delete</button> <button type="button" class="btn btn-primary btn-xs">Read</button> </h4>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
