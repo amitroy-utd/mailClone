@@ -35,3 +35,39 @@
     height: 100px;
     width: 100%;    
 }
+
+.emailRow {
+    padding: 10px;
+    line-height: 0;
+}
+
+.emails {
+    margin-top : 50px;
+}
+
+.emails .emailRow:nth-child(even){
+  background-color: #f2f2f2;
+}
+.emails .emailRow:nth-child(odd){
+  background-color: #d9d9d9;
+}
+
+
+
+.emailCount {
+    padding: 10px;
+    color: #ccc;
+}
+
+.searchDiv input[type=text] {
+    width: 100%;
+    padding: 1px 1px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+button {
+    float: right;
+    margin-right: 10px;
+}
